@@ -1,11 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Alarm & notification permissions -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <!-- Required by Transsion (Tecno / Infinix / itel) clock app for ACTION_SET_ALARM -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <application
         android:label="Sleep Calculator"
@@ -30,17 +27,6 @@
             </intent-filter>
         </activity>
 
-        <!-- flutter_local_notifications receiver -->
-        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver"
-            android:exported="false"/>
-        <receiver android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
-            </intent-filter>
-        </receiver>
-
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
@@ -51,9 +37,33 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
-        <!-- Required so android_intent_plus can resolve the alarm app -->
+        <!-- ACTION_SET_ALARM — required so PackageManager can find the clock app handler -->
         <intent>
             <action android:name="android.intent.action.SET_ALARM"/>
         </intent>
+
+        <!-- Known OEM clock app packages for Layer 3 fallback -->
+        <package android:name="com.transsion.deskclock"/>
+        <package android:name="com.android.deskclock"/>
+        <package android:name="com.google.android.deskclock"/>
+        <package android:name="com.samsung.android.app.clockpackage"/>
+        <package android:name="com.miui.clock"/>
+        <package android:name="com.oneplus.deskclock"/>
+        <package android:name="net.oneplus.deskclock"/>
+        <package android:name="com.huawei.deskclock"/>
+        <package android:name="com.coloros.alarmclock"/>
+        <package android:name="com.oppo.alarmclock"/>
+        <package android:name="com.bbk.deskclock"/>
+        <package android:name="com.vivo.alarmclock"/>
+        <package android:name="com.realme.deskclock"/>
+        <package android:name="com.asus.deskclock"/>
+        <package android:name="com.lge.clock"/>
+        <package android:name="com.motorola.alarmclock"/>
+        <package android:name="com.sonyericsson.organizer"/>
+        <package android:name="com.sonymobile.deskclock"/>
+        <package android:name="com.zte.deskclock"/>
+        <package android:name="com.lenovo.deskclock"/>
+        <package android:name="com.nokia.deskclock"/>
+        <package android:name="com.tcl.clock"/>
     </queries>
 </manifest>
