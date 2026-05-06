@@ -56,7 +56,8 @@ class ModeToggle extends StatelessWidget {
               children: [
                 Expanded(
                   child: GestureDetector(
-                    onTap: isWakeUp ? null : controller.toggleMode,
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () { if (!isWakeUp) controller.toggleMode(); },
                     child: Center(
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -86,7 +87,8 @@ class ModeToggle extends StatelessWidget {
                 ),
                 Expanded(
                   child: GestureDetector(
-                    onTap: isWakeUp ? controller.toggleMode : null,
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () { if (isWakeUp) controller.toggleMode(); },
                     child: Center(
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
