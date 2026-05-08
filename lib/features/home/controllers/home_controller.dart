@@ -35,13 +35,16 @@ class HomeController extends GetxController {
   bool get isWakeUpMode => mode.value == CalculationMode.wakeUp;
 
   String get selectedTimeLabel {
-    final h = selectedHour.value;
-    final m = selectedMinute.value;
-    final period = h >= 12 ? 'PM' : 'AM';
-    final displayH = h % 12 == 0 ? 12 : h % 12;
-    final displayM = m.toString().padLeft(2, '0');
-    return '$displayH:$displayM $period';
+    final displayM = selectedMinute.value.toString().padLeft(2, '0');
+    return '$displayHour:$displayM $period';
   }
+
+  int get displayHour {
+    final h = selectedHour.value;
+    return h % 12 == 0 ? 12 : h % 12;
+  }
+
+  String get period => selectedHour.value >= 12 ? 'PM' : 'AM';
 
   // ── Actions ──────────────────────────────────────────────────
   void toggleMode() {
@@ -57,6 +60,16 @@ class HomeController extends GetxController {
     selectedMinute.value = minute;
     if (isCalculated.value) calculate();
   }
+
+  void incrementHour() => updateTime((selectedHour.value + 1) % 24, selectedMinute.value);
+
+  void decrementHour() => updateTime((selectedHour.value - 1 + 24) % 24, selectedMinute.value);
+
+  void incrementMinute() => updateTime(selectedHour.value, (selectedMinute.value + 1) % 60);
+
+  void decrementMinute() => updateTime(selectedHour.value, (selectedMinute.value - 1 + 60) % 60);
+
+  void togglePeriod() => updateTime((selectedHour.value + 12) % 24, selectedMinute.value);
 
   void calculate() {
     HapticUtils.medium();

@@ -45,6 +45,6 @@ class AppStrings {
   // Misc
   static const String cycleExplainer =
       'Each sleep cycle lasts ~90 minutes. '
-      'Waking mid-cycle leaves you groggy. '
-      'These times align with cycle end-points.';
+      'We add ~15 min to fall asleep. '
+      'Waking mid-cycle leaves you groggy.';
 }

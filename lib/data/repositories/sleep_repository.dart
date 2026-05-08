@@ -6,7 +6,7 @@ class SleepRepository {
   /// Returns cycles from [minCycles] down to [maxCycles] (largest first).
   List<SleepResultModel> calculateBedTimes({
     required DateTime wakeUpTime,
-    int minCycles = 2,
+    int minCycles = 1,
     int maxCycles = 7,
   }) {
     final results = <SleepResultModel>[];
@@ -32,7 +32,7 @@ class SleepRepository {
   /// Returns cycles from [minCycles] up to [maxCycles] (smallest first).
   List<SleepResultModel> calculateWakeUpTimes({
     required DateTime sleepTime,
-    int minCycles = 2,
+    int minCycles = 1,
     int maxCycles = 7,
   }) {
     final results = <SleepResultModel>[];
