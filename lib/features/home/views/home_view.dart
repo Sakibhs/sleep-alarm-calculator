@@ -62,8 +62,7 @@ class HomeView extends GetView<HomeController> {
             width: 34,
             height: 34,
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: AppColors.primaryGradient,
+              borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
                   color: AppColors.primaryStart.withValues(alpha: 0.4),
@@ -71,10 +70,10 @@ class HomeView extends GetView<HomeController> {
                 ),
               ],
             ),
-            child: const Icon(
-              Icons.nightlight_round,
-              color: Colors.white,
-              size: 18,
+            clipBehavior: Clip.antiAlias,
+            child: Image.asset(
+              'assets/icon/icon.png',
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(width: 10),

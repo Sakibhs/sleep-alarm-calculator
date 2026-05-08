@@ -18,25 +18,22 @@ class SplashView extends GetView<SplashController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Moon icon
+              // App logo
               Container(
-                width: 100,
-                height: 100,
+                width: 140,
+                height: 140,
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: AppColors.primaryGradient,
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primaryStart.withValues(alpha: 0.4),
-                      blurRadius: 40,
-                      spreadRadius: 10,
+                      color: AppColors.primaryStart.withValues(alpha: 0.35),
+                      blurRadius: 50,
+                      spreadRadius: 8,
                     ),
                   ],
                 ),
-                child: const Icon(
-                  Icons.nightlight_round,
-                  color: Colors.white,
-                  size: 54,
+                child: Image.asset(
+                  'assets/icon/icon_foreground.png',
+                  fit: BoxFit.contain,
                 ),
               )
                   .animate()
